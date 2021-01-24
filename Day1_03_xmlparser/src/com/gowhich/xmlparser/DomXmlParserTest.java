@@ -42,7 +42,7 @@ public class DomXmlParserTest {
 		}
 		
 		Node node = nodeList.item(1);
-		node.setTextContent("书名2-改");
+		node.setTextContent("书名2-改1");
 		
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
