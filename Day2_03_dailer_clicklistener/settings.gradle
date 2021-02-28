@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "电话拨号器点击事件"
