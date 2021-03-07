@@ -11,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.gowhich.logindemo.utils.Utils;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -47,8 +49,22 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.i("Login", "userName:"+userName);
                 Log.i("Login", "password:"+password);
+
+                boolean saveInfo = Utils.saveInfo(userName, password);
+
+                if (saveInfo) {
+                    Toast.makeText(MainActivity.this, "保存成功", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "保存失敗", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+        String[] userInfo = Utils.readInfo();
+        if (userInfo != null) {
+            editText1.setText(userInfo[0]);
+            editText2.setText(userInfo[1]);
+        }
 
     }
 }
