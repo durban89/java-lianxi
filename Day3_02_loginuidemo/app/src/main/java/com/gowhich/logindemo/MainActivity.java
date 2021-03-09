@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Login", "userName:"+userName);
                 Log.i("Login", "password:"+password);
 
-                boolean saveInfo = Utils.saveInfo(userName, password);
+//                boolean saveInfo = Utils.saveInfo(userName, password);
+                boolean saveInfo = Utils.saveInfoByContext(MainActivity.this, userName, password);
 
                 if (saveInfo) {
                     Toast.makeText(MainActivity.this, "保存成功", Toast.LENGTH_LONG).show();
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        String[] userInfo = Utils.readInfo();
+//        String[] userInfo = Utils.readInfo();
+        String[] userInfo = Utils.readInfoByContext(MainActivity.this);
         if (userInfo != null) {
             editText1.setText(userInfo[0]);
             editText2.setText(userInfo[1]);
