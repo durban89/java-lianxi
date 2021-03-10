@@ -1,6 +1,7 @@
 package com.gowhich.logindemo.utils;
 
 import android.content.Context;
+import android.os.Environment;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,6 +12,36 @@ import java.io.InputStreamReader;
 import java.nio.Buffer;
 
 public class Utils {
+    public static boolean saveInfoToSDCard(Context context, String userName, String password) {
+        String userInfo = userName+"##"+password;
+
+        File file = new File(context.getExternalFilesDir(null) + "/info3.txt");
+
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(userInfo.getBytes());
+            fos.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static String[] readInfoFromSDCard(Context context) {
+        File file = new File(context.getExternalFilesDir(null) + "/info3.txt");
+
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            String tmp = reader.readLine();
+            return tmp.split("##");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static boolean saveInfoByContext(Context context, String userName, String password) {
         String userInfo = userName+"##"+password;
         try {
